@@ -2,6 +2,7 @@
 # Importing modules for handling http and cookie
 import http.cookiejar, urllib.request, urllib
 from bs4 import BeautifulSoup
+import time
 
 # Storing cookies in cj variable
 cj = http.cookiejar.CookieJar()
@@ -11,7 +12,7 @@ op = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
 
 # Logging in
 url = ('http://190.129.32.203/webestudiantes22016/login.php')
-val = {'user' : '47128', 'pass' : ''} #aqui tu ru y contraseña
+val = {'user' : '47128', 'pass' : '19400'} #aqui tu ru y contraseña
 data = urllib.parse.urlencode(val)
 asciidata = data.encode('ascii')
 res = op.open(url, asciidata)
@@ -26,10 +27,16 @@ data = urllib.parse.urlencode(val)
 asciidata = data.encode('ascii')
 res2 = op.open(url2, asciidata)
 
+con=1
 while(True):
+	time.sleep(3)
+	print ("proceso de espera")
 	url3 = op.open('http://190.129.32.203/webestudiantes22016/menus/programarmaterias/generar_programacion.php?id_mencion=0')
 
 	soup = BeautifulSoup(url3.read(), "html.parser")
+	
+	print("iteracion: "+str(con))
+	con=con+1
 	
 	_kp_search = str(soup.findAll('script'))
 	_kp_searchstart = _kp_search.find('_kp')
@@ -68,7 +75,7 @@ while(True):
 		toaddrs2  = 'tirael67@gmail.com'
 		msg = 'Ya esta para Programar!'
 		username = 'rey47128@gmail.com'#aqui tu correo
-		password = ''#aqui tu contraseña
+		password = 'nadaesrealasies'#aqui tu contraseña
 		server = SMTP('smtp.gmail.com:587')
 		server.ehlo()
 		server.starttls()
